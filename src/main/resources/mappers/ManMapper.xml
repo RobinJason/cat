@@ -138,4 +138,18 @@
       yn = #{yn,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="checkUsername" parameterType="string" resultType="int">
+    select count(1)
+    from miao_man
+    where logname = #{username}
+  </select>
+
+  <select id="selectLogin" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from miao_man
+    where logname = #{username}
+    and password = #{password}
+  </select>
 </mapper>
