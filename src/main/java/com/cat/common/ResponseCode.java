@@ -3,7 +3,7 @@ package com.cat.common;
 /**
  * @Author: LR
  * @Descriprition:定义通用响应码的枚举类
- * @Date: Created in 16:29 2018/6/9
+ * @Date: Created in 16:29 2018/7/16
  * @Modified By:
  **/
 public enum ResponseCode {
