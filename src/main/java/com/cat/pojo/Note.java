@@ -2,7 +2,7 @@ package com.cat.pojo;
 
 import java.util.Date;
 
-public class note {
+public class Note {
     private Integer id;
 
     private Integer man;
@@ -15,7 +15,7 @@ public class note {
 
     private String content;
 
-    public note(Integer id, Integer man, Date time, String title, String introduct, String content) {
+    public Note(Integer id, Integer man, Date time, String title, String introduct, String content) {
         this.id = id;
         this.man = man;
         this.time = time;
@@ -24,7 +24,7 @@ public class note {
         this.content = content;
     }
 
-    public note() {
+    public Note() {
         super();
     }
 
