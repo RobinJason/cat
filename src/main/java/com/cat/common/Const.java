@@ -1,5 +1,8 @@
 package com.cat.common;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * @Author: LR
  * @Descriprition:
@@ -32,5 +35,21 @@ public class Const {
         public String getValue() {
             return value;
         }
+    }
+
+    public enum Healthy{
+        HEALTHY(0, "健康"),
+        UNHEALTHY(1, "不健康");
+
+        Healthy(int code, String value){
+            this.code = code;
+            this.value = value;
+        }
+
+        @Setter @Getter
+        private int code;
+
+        @Setter @Getter
+        private String value;
     }
 }

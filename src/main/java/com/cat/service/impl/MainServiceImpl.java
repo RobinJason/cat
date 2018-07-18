@@ -1,5 +1,6 @@
 package com.cat.service.impl;
 
+import com.cat.common.Const;
 import com.cat.common.ResponseCode;
 import com.cat.common.ServerResponse;
 import com.cat.dao.CatMapper;
@@ -41,6 +42,12 @@ public class MainServiceImpl implements IMainService {
         CatVo catVo = new CatVo();
         catVo.setName(cat.getName());
         catVo.setCatPic(cat.getPic());
+        if(cat.getHealthy() == Const.Healthy.HEALTHY.getCode()){
+            catVo.setHealthyStatus(Const.Healthy.HEALTHY.getValue());
+        }
+        if(cat.getHealthy() == Const.Healthy.UNHEALTHY.getCode()){
+            catVo.setHealthyStatus(Const.Healthy.UNHEALTHY.getValue());
+        }
 
         return catVo;
     }

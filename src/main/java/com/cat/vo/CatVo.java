@@ -3,6 +3,8 @@ package com.cat.vo;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Map;
+
 /**
  * @Author: LR
  * @Descriprition:
@@ -16,5 +18,8 @@ public class CatVo {
 
     @Getter @Setter
     private String catPic;
+
+    @Getter @Setter
+    private String healthyStatus;
 
 }
