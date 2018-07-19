@@ -9,8 +9,21 @@
       </nav>
     </div>
     <div class="header-right">
-      <button type="button">登录</button>
-      <button type="button">注册</button>
+      <div class="header-right-btn" v-if="!login">
+        <button type="button">登录</button>
+        <button type="button">注册</button>
+      </div>
+      <div class="header-right-info" v-if="login">
+        <div class="portrait">
+          <img src="" alt="">
+          <div></div>
+        </div>
+        <p>Susie</p>
+        <div class="badge">
+          <i class="el-icon-message"></i>
+          <span>17</span>
+        </div>
+      </div>
     </div>
   </header>
 </template>
@@ -19,6 +32,7 @@
 export default {
   data () {
     return {
+      login: true,
       nav: [
         {
           text: '首页',
@@ -70,7 +84,7 @@ export default {
       &.router-link-exact-active
         background: bisque;
         color: #fff;
-  .header-right
+  .header-right-btn
     button
       border: 1px solid bisque;
       background: bisque;
@@ -78,4 +92,33 @@ export default {
       padding: 2px 8px;
       border-radius: 6px;
       margin-left: 1rem;
+  .header-right-info
+    display: flex;
+    align-items: center;
+    .portrait
+      >div
+        width: 2rem;
+        height: 2rem;
+        background: #7676f3;
+        border-radius: 50%;
+        margin-right: 4px;
+    p
+      margin: 0;
+      color: #333;
+    .badge
+      position: relative;
+      margin-left: 10px;
+      color: #777;
+      i
+        font-size: 24px
+      span
+        position: absolute;
+        background: #fd7031;
+        color: #fff;
+        font-size: 13px;
+        top: -5px;
+        right: -.8rem;
+        width: 1.4rem;
+        text-align: center;
+        transform: scale(.8);
 </style>
