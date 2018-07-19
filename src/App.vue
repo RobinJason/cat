@@ -1,13 +1,21 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <!--头部-->
+    <v-header></v-header>
+    <!--路由出口-->
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
   </div>
 </template>
 
 <script>
+import header from './components/header/header.vue'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    'v-header': header
+  }
 }
 </script>
 
