@@ -75,6 +75,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import Cropper from '../../components/my/cropper.vue'
 import customData from '../../components/my/custom-date.vue'
 export default {
