@@ -91,6 +91,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import Cropper from '../../components/my/cropper.vue'
 export default {
   name: 'personal-data',
