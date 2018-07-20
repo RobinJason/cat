@@ -59,9 +59,10 @@ export default {
 .my-layout-left h1{
   padding: 0;
   margin: 0;
-  font-size: 18px;
-  color: #303030;
+  font-size: 16px;
+  color: #333;
   font-weight: 800;
+  font-family: 'PingFang-SC-Bold';
 }
 .my-nav{
   padding: 0;
@@ -74,14 +75,14 @@ export default {
 .my-nav a{
   display: block;
   line-height: 35px;
-  color: #757575;
+  color: #333;
   text-decoration: none;
 }
 .my-nav a.router-link-exact-active{
-  color: #ff6363;
+  color: #d73027;
 }
 .my-layout-right{
   width: 100%;
-  padding-top: 2em;
+  padding-top: 1.6rem;
 }
 </style>

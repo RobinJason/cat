@@ -170,10 +170,10 @@
   font-size: 12px;
 }
 .custom-my-title{
-  margin: 0 0 14px 0;
-  font-size: 16px;
+  margin: 0 0 20px 0;
+  font-size: 14px;
   font-weight: normal;
-  color: #757575;
+  color: #333;
 }
 li{
   list-style-type: none;

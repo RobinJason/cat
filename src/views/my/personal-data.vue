@@ -3,38 +3,17 @@
     <h2 class="custom-my-title">个人资料</h2>
     <form>
       <div class="my-row">
-        <label class="asterisk">头像：</label>
         <div class="input-row upload-header">
-          <cropper v-if="showCropper"
-                   ref="cropper"
-                   :img="src"
-                   :autoCrop="options.autoCrop"
-                   :autoCropWidth="options.autoCropWidth"
-                   :autoCropHeight="options.autoCropHeight"
-                   :fixedBox="options.fixedBox"
-                   @clickConfirm="confirmUpload()"
-                   @close="closeUpload()"
-          ></cropper>
-          <div>
-            <input type="file" class="custom-file" @change="onFileChange($event)">
-            <span v-if="!clippedPictures">点击上传</span>
-            <img :src="clippedPictures" v-if="clippedPictures">
+          <div class="warpper">
+            <span v-if="!clippedPictures"></span>
+            <img :src="clippedPictures">
           </div>
-          <p>请选择jpg、gif格式，小于2M的图片（使用高质量图片，可生成高清头像）</p>
+          <div>
+            <span class="upload-header-input">浏览 <input type="file" class="custom-file" @change="onFileChange($event)"></span>
+            <p>请选择jpg、gif格式，小于2M的图片（使用高质量图片，可生成高清头像）</p>
+          </div>
         </div>
       </div>
-      <!--<div class="upload-header">
-        <div class="upload-header-img">
-          <img src="https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=24250912d458ccbf1bbcb23c21e3db03/908fa0ec08fa513db16ccc7e386d55fbb3fbd948.jpg" alt="">
-        </div>
-        <div class="upload-header-input">
-          <div>
-            <input type="text">
-            <span>浏览 <input type="file" class="custom-file"></span>
-          </div>
-          <p>请选择jpg、gif格式，小于2M的图片（使用高质量图片，可生成高清头像）</p>
-        </div>
-      </div>-->
       <div class="my-row">
         <label class="asterisk">昵称：</label>
         <div class="input-row">
@@ -63,12 +42,7 @@
       <div class="my-row">
         <label class="asterisk">生日：</label>
         <div class="input-row">
-          <el-date-picker
-            class="custom-date"
-            v-model="birthday"
-            type="date"
-            placeholder="请选择">
-          </el-date-picker>
+          <custom-data :nowdata="nowdata" :mindata="mindata" :maxdata="maxdata" @timechange="changeTime"></custom-data>
         </div>
       </div>
       <div class="my-row">
@@ -87,11 +61,22 @@
         <button type="button">提交</button>
       </div>
     </form>
+    <cropper v-if="showCropper"
+             ref="cropper"
+             :img="src"
+             :autoCrop="options.autoCrop"
+             :autoCropWidth="options.autoCropWidth"
+             :autoCropHeight="options.autoCropHeight"
+             :fixedBox="options.fixedBox"
+             @clickConfirm="confirmUpload()"
+             @close="closeUpload()"
+    ></cropper>
   </div>
 </template>
 
 <script>
 import Cropper from '../../components/my/cropper.vue'
+import customData from '../../components/my/custom-date.vue'
 export default {
   name: 'personal-data',
   data () {
@@ -109,8 +94,18 @@ export default {
         autoCropWidth: 200,
         autoCropHeight: 200,
         fixedBox: true
-      }
+      },
+      nowdata: '',
+      mindata: '',
+      maxdata: ''
     }
+  },
+  created: function () {
+    let vm = this;
+    let d = new Date(),
+        y = d.getFullYear(),
+        m = d.getMonth() + 1;
+    vm.nowdata = y + '' + m;
   },
   methods: {
     onFileChange (event) {
@@ -149,10 +144,14 @@ export default {
     },
     closeUpload () {
       this.showCropper = false
+    },
+    changeTime: function (time) {
+      console.log(time);
     }
   },
   components: {
-    Cropper
+    Cropper,
+    customData
   }
 }
 </script>
@@ -164,9 +163,10 @@ export default {
 }
 .upload-header{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  margin-left: 2em;
 }
-.upload-header>div {
+.upload-header>.warpper {
   position: relative;
   width: 100px;
   height: 100px;
@@ -177,15 +177,17 @@ export default {
   align-items: center;
   color: #555;
 }
-.upload-header>div img{
+.upload-header>div:last-child{
+
+}
+.upload-header>.warpper img{
   width: 100%;
   height: 100%;
 }
 .upload-header p{
-  margin: 0;
-  color: #555;
-  font-size: 14px;
-  margin-left: 10px;
+  margin: 5px 0 0 10px;
+  color: #333;
+  font-size: 12px;
 }
 .my-row{
   display: flex;
@@ -194,31 +196,53 @@ export default {
 }
 .my-row>label{
   font-size: 14px;
-  color: #757575;
-  width: 5rem;
-  text-align: left;
+  color: #333;
+  width: 6em;
+  text-align: right;
 }
 .my-row input[type='text']{
   border: 1px solid #999;
   border-radius: 4px;
   padding: 6px 10px;
   width: 200px;
+  color: #777;
 }
 .my-submit-btn{
-  margin-top: 3.5em;
-  margin-left: 2em;
+  margin-top: 50px;
+  margin-left: 2rem;
 }
 .my-submit-btn button{
-  background: #fd7031;
-  border: 1px solid #fd7031;
+  background: #fc8d59;
+  border: 1px solid #fc8d59;
   color: #fff;
-  padding: 4px 12px;
-  border-radius: 4px;
+  width: 60px;
+  height: 30px;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 14px;
 }
 .asterisk:before{
   content: '*';
   color: red;
   vertical-align: sub;
+}
+.upload-header-input{
+  position: relative;
+  border: 1px solid #999;
+  color: #999;
+  border-radius: 5px;
+  font-size: 12px;
+  width: 40px;
+  height: 20px;
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: center;
+  line-height: 20px;
+  margin-left: 10px;
+  margin-top: 8px;
+}
+.el-scrollbar__wrap{
+  overflow-x: hidden;
+  height: 300px;
 }
 </style>

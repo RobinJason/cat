@@ -107,7 +107,7 @@ export default {
       color: #333;
     .badge
       position: relative;
-      margin-left: 10px;
+      margin-left: 20px;
       color: #777;
       i
         font-size: 24px
@@ -115,10 +115,11 @@ export default {
         position: absolute;
         background: #fd7031;
         color: #fff;
-        font-size: 13px;
+        width: 1rem;
+        height: .8rem;
+        line-height: .8rem;
         top: -5px;
-        right: -.8rem;
-        width: 1.4rem;
+        left: -.8rem;
+        font-size: 12px;
         text-align: center;
-        transform: scale(.8);
 </style>
