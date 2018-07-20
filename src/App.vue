@@ -1,31 +1,53 @@
 <template>
   <div id="app">
-    <!--头部-->
-    <v-header></v-header>
-    <!--路由出口-->
-    <keep-alive>
-      <router-view/>
-    </keep-alive>
+    <div class="layout">
+      <!--头部-->
+      <v-header></v-header>
+      <!--路由出口-->
+      <div class="layout-content">
+        <keep-alive>
+          <router-view/>
+        </keep-alive>
+      </div>
+      <!--脚部-->
+      <v-footer></v-footer>
+    </div>
   </div>
 </template>
 
 <script>
-import header from './components/header/header.vue'
+import vHeader from './components/header/header.vue'
+import vFooter from './components/footer/footer.vue'
 export default {
   name: 'App',
   components: {
-    'v-header': header
+    vHeader,
+    vFooter
   }
 }
 </script>
 
 <style>
+@import "assets/css/reset.css";
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  /*font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 60px;*/
+  height: 100%;
+}
+.layout{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.layout-content {
+  width: 1140px;
+  padding: 30px 60px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  flex:1 1 100%;
 }
 </style>
