@@ -10,30 +10,21 @@
 </template>
 
 <script>
-
+// import { mapState } from 'vuex'
 export default {
-  props: {
-    currentTabName: {
-      type: String
-    }
-  },
   data () {
     return {
-      currentTab: 'cat-story',
+      currentTab: 'find-master',
       tabs: [
-        { name: 'cat-story', text: '我和喵星人的故事' },
-        { name: 'find-master', text: '为喵星人寻找主人' }
+        { name: 'find-master', text: '为喵星人寻找主人' },
+        { name: 'cat-story', text: '我和喵星人的故事' }
       ]
-    }
-  },
-  computed: {
-    currentTabComponent () {
-      return this.currentTab
     }
   },
   methods: {
     valuesClass (val) {
       this.currentTab = val
+      this.$store.commit('changeItem', val)
     }
   }
 }

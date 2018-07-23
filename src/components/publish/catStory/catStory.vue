@@ -1,5 +1,7 @@
 <template>
-  <div class="cat-story">{{count}}</div>
+  <div class="cat-story">
+
+  </div>
 </template>
 
 <script>

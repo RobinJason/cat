@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import publishTab from './modules/publishTab'
 
 Vue.use(Vuex)
 
@@ -11,5 +12,8 @@ export default new Vuex.Store({
     increment (state) {
       state.count++
     }
+  },
+  modules: {
+    publishTab: publishTab
   }
 })
