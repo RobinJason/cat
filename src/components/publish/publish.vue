@@ -2,7 +2,7 @@
   <div class="publish">
     <cat-tab></cat-tab>
     <keep-alive>
-      <component v-bind:is="currentTabName"></component>
+      <component v-bind:is="currentTab"></component>
     </keep-alive>
   </div>
 </template>
@@ -11,16 +11,26 @@
 import catStory from './catStory/catStory'
 import findMaster from './findMaster/findMaster'
 import catTab from '../common/catTab'
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
-      currentTabName: 'cat-story'
     }
   },
+  computed: {
+    ...mapState({
+      currentTab (state) {
+        return state.publishTab.currentTab
+      }
+    })
+  },
   components: {
-    'cat-story': catStory,
     'find-master': findMaster,
+    'cat-story': catStory,
     'cat-tab': catTab
+  },
+  created () {
+
   }
 }
 </script>
