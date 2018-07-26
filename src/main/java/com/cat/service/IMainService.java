@@ -2,6 +2,7 @@ package com.cat.service;
 
 import com.cat.common.ServerResponse;
 import com.cat.vo.CatVo;
+import com.github.pagehelper.PageInfo;
 
 /**
  * @Author: LR
@@ -11,5 +12,7 @@ import com.cat.vo.CatVo;
  **/
 public interface IMainService {
 
-    ServerResponse<CatVo> getCatVo(Integer id);
+    ServerResponse<CatVo> getCatVo(Integer id, Integer status);
+
+    ServerResponse<PageInfo> getCatList(Integer gender,Integer status, int pageNum, int pageSize);
 }

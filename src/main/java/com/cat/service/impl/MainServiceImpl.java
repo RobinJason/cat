@@ -6,9 +6,15 @@ import com.cat.common.ServerResponse;
 import com.cat.dao.CatMapper;
 import com.cat.pojo.Cat;
 import com.cat.service.IMainService;
+import com.cat.vo.CatListVo;
 import com.cat.vo.CatVo;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Author: LR
@@ -24,11 +30,11 @@ public class MainServiceImpl implements IMainService {
     private CatMapper catMapper;
 
     // 获取帖子信息
-    public ServerResponse<CatVo> getCatVo(Integer id){
+    public ServerResponse<CatVo> getCatVo(Integer id, Integer status){
         if (id == null) {
             ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
         }
-        Cat cat = catMapper.selectByPrimaryKey(id);
+        Cat cat = catMapper.selectByIdAndStatus(id, status);
         if (cat == null) {
             ServerResponse.createByErrorMessage("此猫不存在");
         }
@@ -42,15 +48,49 @@ public class MainServiceImpl implements IMainService {
         CatVo catVo = new CatVo();
         catVo.setName(cat.getName());
         catVo.setCatPic(cat.getPic());
+        catVo.setGender(cat.getGender());
+        catVo.setBrith(cat.getBirth());
         if(cat.getHealthy() == Const.Healthy.HEALTHY.getCode()){
-            catVo.setHealthyStatus(Const.Healthy.HEALTHY.getValue());
-        }
+            catVo.setHealthyStatus(Const.Healthy.HEALTHY.getCode());
+    }
         if(cat.getHealthy() == Const.Healthy.UNHEALTHY.getCode()){
-            catVo.setHealthyStatus(Const.Healthy.UNHEALTHY.getValue());
+            catVo.setHealthyStatus(Const.Healthy.UNHEALTHY.getCode());
         }
 
         return catVo;
     }
 
+    private CatListVo assembleCatListVo(Cat cat){
+        CatListVo catVoList = new CatListVo();
+        catVoList.setName(cat.getName());
+        catVoList.setCatPic(cat.getPic());
+        catVoList.setGender(cat.getGender());
+        catVoList.setBrith(cat.getBirth());
+        if(cat.getHealthy() == Const.Healthy.HEALTHY.getCode()){
+            catVoList.setHealthyStatus(Const.Healthy.HEALTHY.getCode());
+        }
+        if(cat.getHealthy() == Const.Healthy.UNHEALTHY.getCode()){
+            catVoList.setHealthyStatus(Const.Healthy.UNHEALTHY.getCode());
+        }
+
+        return catVoList;
+    }
+
+    public ServerResponse<PageInfo> getCatList(Integer gender,Integer status, int pageNum, int pageSize){
+        PageHelper.startPage(pageNum, pageSize);
+        List<Cat> catList = catMapper.getCatList(gender, status);
+
+        List<CatListVo> catListVoList = Lists.newArrayList();
+
+        for (Cat catItem : catList) {
+            CatListVo catListVo = assembleCatListVo(catItem);
+            catListVoList.add(catListVo);
+        }
+
+        PageInfo pageInfo = new PageInfo(catList);
+        pageInfo.setList(catListVoList);
+
+        return ServerResponse.createBySuccess(pageInfo);
+    }
 
 }

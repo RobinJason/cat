@@ -10,24 +10,22 @@ import java.util.Date;
 /**
  * @Author: LR
  * @Descriprition:
- * @Date: Created in 11:33 2018/7/18
+ * @Date: Created in 12:02 2018/7/26
  * @Modified By:
  **/
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CatVo {
+public class CatListVo {
 
-    private String name;
+        private String name;
 
-    private String catPic;
+        private String catPic;
 
-    private int healthyStatus;
+        private int healthyStatus;
 
-    private int gender;
+        private int gender;
 
-    private Date brith;
-
+        private Date brith;
 }
