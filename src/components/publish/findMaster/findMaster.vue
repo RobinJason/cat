@@ -22,10 +22,15 @@
         <img :src="uploadPic" alt="">
       </div>
     </div>
+    <div class="city-select-wrap">
+      <city-select :order="order"></city-select> <!-- *传递数据到citySelect组件-->
+    </div>
   </div>
 </template>
 
 <script>
+import citySelect from '../../common/citySelect' // *调用城市select组件
+import { mapState } from 'vuex' // *引入vuex的state
 export default {
   data () {
     return {
@@ -38,10 +43,16 @@ export default {
           name: 'food2.jpeg',
           url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
         }
-      ]
+      ],
+      order: 2 // *级联选择器需要的级数，根据需要来进行修改，可供选择的范围有1，2，3
     }
   },
   computed: {
+    ...mapState({
+      chosenCity (state) { // *城市选择后，父组件的此计算属性相应改变
+        return state.citySelect.cityArr
+      }
+    }),
     uploadPic () {
       let firstItem = this.fileList[0]
       return firstItem ? firstItem.url : ''
@@ -58,6 +69,9 @@ export default {
     handleSuccess (response, file, fileList) {
       this.fileList = fileList
     }
+  },
+  components: {
+    'city-select': citySelect
   }
 }
 </script>
@@ -98,14 +112,17 @@ export default {
           -o-transition: all .2s
           transition: all .2s
     .upload-wrap
-      margin-top 20px
+      margin-top 30px
       overflow hidden
-      position relative
-      padding-top 60px
       .upload-demo
+        box-sizing: border-box;
         float left
-        margin-left 90px
+        position relative
+        padding-top 60px
         margin-right 400px
+        padding-left 90px
+        padding-right: 400px;
+        width: 100%;
         div.el-upload.el-upload--picture-card
           height auto
           width auto
@@ -115,7 +132,12 @@ export default {
           top 0
           left 0
           .el-button
+            background #fc8d59
+            border-color #fc8d59
             padding 8px 23px
+            &:hover
+              background #fca86c
+              border-color #fca86c
         ul
           li
             margin 0 30px 30px 0
@@ -126,4 +148,7 @@ export default {
         margin-left -100%
         height 400px
         width 400px
+        img
+          height 100%
+          width 100%
 </style>
