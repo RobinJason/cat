@@ -1016,7 +1016,7 @@
   .custom-popup > div {
     width: 60%;
     position: relative;
-    margin: 0 auto 50px;
+    margin: 50px auto;
     background: #fff;
     border-radius: 2px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
