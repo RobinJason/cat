@@ -13,31 +13,11 @@
               <img :src="list.portrait" alt="">
             </div>
             <div class="adopt-list-info">
-              <div>
-                <label>猫猫</label>
-                <p>{{list.catName}}</p>
-                <button type="button">修改</button>
-              </div>
-              <div>
-                <label>主人</label>
-                <p>{{list.master}}</p>
-                <button type="button">修改</button>
-              </div>
-              <div>
-                <label>领养日</label>
-                <p>{{list.adoptTime}}</p>
-                <button type="button">修改</button>
-              </div>
-              <div>
-                <label>健康状况</label>
-                <p>{{list.health}}</p>
-                <button type="button">修改</button>
-              </div>
-              <div>
-                <label>领养地址</label>
-                <p>{{list.adoptPlace}}</p>
-                <button type="button">修改</button>
-              </div>
+              <edit-input label="猫猫" :text="list.catName" @clickEvents="editCatInfo(1)"></edit-input>
+              <edit-input label="主人" :text="list.master" @clickEvents="editCatInfo(2)"></edit-input>
+              <edit-input label="领养日" :text="list.adoptTime" @clickEvents="editCatInfo(3)"></edit-input>
+              <edit-input label="健康状况" :text="list.health" @clickEvents="editCatInfo(4)"></edit-input>
+              <edit-input label="领养地址" :text="list.adoptPlace" @clickEvents="editCatInfo(5)"></edit-input>
             </div>
           </div>
         </li>
@@ -49,31 +29,11 @@
               <img :src="list.portrait" alt="">
             </div>
             <div class="adopt-list-info">
-              <div>
-                <label>猫猫</label>
-                <p>{{list.catName}}</p>
-                <button type="button">修改</button>
-              </div>
-              <div>
-                <label>主人</label>
-                <p>{{list.master}}</p>
-                <button type="button">修改</button>
-              </div>
-              <div>
-                <label>领养日</label>
-                <p>{{list.adoptTime}}</p>
-                <button type="button">修改</button>
-              </div>
-              <div>
-                <label>健康状况</label>
-                <p>{{list.health}}</p>
-                <button type="button">修改</button>
-              </div>
-              <div>
-                <label>领养地址</label>
-                <p>{{list.adoptPlace}}</p>
-                <button type="button">修改</button>
-              </div>
+              <edit-input label="猫猫" :text="list.catName" @clickEvents="editCatInfo(1)"></edit-input>
+              <edit-input label="主人" :text="list.master" @clickEvents="editCatInfo(2)"></edit-input>
+              <edit-input label="领养日" :text="list.adoptTime" @clickEvents="editCatInfo(3)"></edit-input>
+              <edit-input label="健康状况" :text="list.health" @clickEvents="editCatInfo(4)"></edit-input>
+              <edit-input label="领养地址" :text="list.adoptPlace" @clickEvents="editCatInfo(5)"></edit-input>
             </div>
           </div>
         </li>
@@ -83,11 +43,14 @@
 </template>
 
 <script>
+import editInput from '../../components/my/edit-input.vue'
 export default {
   name: 'about-adopt',
   data () {
     return {
       idx: 0,
+      vlaue: 'asdasd',
+      show: false,
       adoptList: [
         {
           portrait: require('../../assets/logo.png'),
@@ -129,7 +92,29 @@ export default {
   methods: {
     tabClick (index) {
       this.idx = index
+    },
+    editCatInfo (text) {
+      switch (text) {
+        case 1:
+          console.log('catName');
+          break;
+        case 2:
+          console.log('master');
+          break;
+        case 3:
+          console.log('adoptTime');
+          break;
+        case 4:
+          console.log('health');
+          break;
+        case 5:
+          console.log('adoptPlace');
+          break;
+      }
     }
+  },
+  components: {
+    editInput
   }
 }
 </script>
@@ -154,36 +139,12 @@ export default {
   border-radius: 6px;
   overflow: hidden;
   flex: none;
+  width: 180px;
+}
+.adopt-list-warp .portrait img{
+  width: 100%;
 }
 .adopt-list-info{
   width: 100%;
-}
-.adopt-list-info>div{
-  display: flex;
-  align-items: center;
-  line-height: 40px;
-}
-.adopt-list-info label{
-  width: 5em;
-  flex: none;
-  font-weight: 800;
-  color: #555;
-  font-size: 14px;
-}
-.adopt-list-info p{
-  margin: 0;
-  width: 100%;
-  font-size: 14px;
-  color: #777;
-}
-.adopt-list-info button{
-  flex: none;
-  background: none;
-  border: 0;
-  cursor: pointer;
-  line-height: 38px;
-  width: 100px;
-  text-align: left;
-  color: #777;
 }
 </style>

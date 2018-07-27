@@ -24,7 +24,7 @@ export default {
       nav: [
         {
           name: '个人资料',
-          link: '/my/personal-data'
+          link: '/my'
         },
         {
           name: '消息通知',

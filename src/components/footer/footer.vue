@@ -28,7 +28,7 @@ export default {}
 <style>
 .footer{
   position: relative;
-  background: #ffe4c4;
+  background: #fc8d59;
   color: #fff;
   text-align: center;
   padding: .5rem 0;

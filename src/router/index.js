@@ -13,7 +13,7 @@ const routes = [
     component: resolve => require(['../views/my/my-layout.vue'], resolve),
     children: [
       {
-        path: '/my/personal-data',
+        path: '/my',
         name: 'personal-data',
         component: resolve => require(['../views/my/personal-data.vue'], resolve)
       },

@@ -5,8 +5,8 @@
       <div class="my-row">
         <div class="input-row upload-header">
           <div class="warpper">
-            <span v-if="!clippedPictures"></span>
-            <img :src="clippedPictures">
+            <span v-if="!user.clippedPictures"></span>
+            <img :src="user.clippedPictures">
           </div>
           <div>
             <span class="upload-header-input">浏览 <input type="file" class="custom-file" @change="onFileChange($event)"></span>
@@ -17,7 +17,7 @@
       <div class="my-row">
         <label class="asterisk">昵称：</label>
         <div class="input-row">
-          <input type="text" placeholder="请输入昵称">
+          <input type="text" placeholder="请输入昵称" v-model="user.name">
         </div>
       </div>
       <div class="my-row">
@@ -25,14 +25,14 @@
         <div class="input-row">
           <label class="custom-radio">
             <span class="custom-radio-input">
-              <input type="radio" class="custom-radio-original" name="sex" value="boy" v-model="sex">
+              <input type="radio" class="custom-radio-original" name="sex" value="boy" v-model="user.sex">
               <span class="custom-radio-inner"></span>
             </span>
             <span class="custom-radio-label">男</span>
           </label>
           <label class="custom-radio">
             <span class="custom-radio-input">
-              <input type="radio" class="custom-radio-original" name="sex" value="girl" v-model="sex">
+              <input type="radio" class="custom-radio-original" name="sex" value="girl" v-model="user.sex">
               <span class="custom-radio-inner"></span>
             </span>
             <span class="custom-radio-label">女</span>
@@ -42,23 +42,23 @@
       <div class="my-row">
         <label class="asterisk">生日：</label>
         <div class="input-row">
-          <custom-data :nowdata="nowdata" :mindata="mindata" :maxdata="maxdata" @timechange="changeTime"></custom-data>
+          <custom-data @timechange="changeTime"></custom-data>
         </div>
       </div>
       <div class="my-row">
         <label class="asterisk">手机号：</label>
         <div class="input-row">
-          <input type="text" placeholder="请输入手机号码">
+          <input type="text" placeholder="请输入手机号码" v-model="user.phone">
         </div>
       </div>
       <div class="my-row">
         <label class="asterisk">现居地址：</label>
         <div class="input-row">
-          <input type="text" placeholder="请输入您所在的地址">
+          <input type="text" placeholder="请输入您所在的地址" v-model="user.address">
         </div>
       </div>
       <div class="my-submit-btn">
-        <button type="button">提交</button>
+        <button type="button" @click="submitClick">提交</button>
       </div>
     </form>
     <cropper v-if="showCropper"
@@ -82,11 +82,17 @@ export default {
   name: 'personal-data',
   data () {
     return {
-      sex: 'boy',
       birthday: '',
-      clippedPictures: '',
       showCropper: false,
       src: '',
+      user: {
+        clippedPictures: '',
+        name: '',
+        sex: 'boy',
+        birthday: '',
+        phone: '',
+        address: ''
+      },
       imgData: {
         accept: 'image/gif, image/jpeg , image/jpg'
       },
@@ -98,7 +104,7 @@ export default {
       },
       nowdata: '',
       mindata: '',
-      maxdata: ''
+      maxdata: '',
     }
   },
   created: function () {
@@ -115,7 +121,6 @@ export default {
       let reader = new FileReader()
       let self = this
       let data
-      console.log(file.size)
       if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(event.target.value)) {
         self.$message('图片类型必须是.gif,jpeg,jpg,png,bmp中的一种')
         return false
@@ -139,15 +144,22 @@ export default {
     },
     confirmUpload () {
       this.$refs.cropper.getCropData((data) => {
-        this.clippedPictures = data
+        this.user.clippedPictures = data
         this.closeUpload()
       })
     },
     closeUpload () {
       this.showCropper = false
     },
-    changeTime: function (time) {
-      console.log(time);
+    changeTime (time) {
+      this.user.birthday = time;
+    },
+    submitClick () {
+      console.log(this.user.birthday)
+      console.log(this.user.name)
+      console.log(this.user.sex)
+      console.log(this.user.phone)
+//      console.log(this.clippedPictures)
     }
   },
   components: {

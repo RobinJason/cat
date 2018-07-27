@@ -5,7 +5,21 @@
         <img src="" alt="">
       </div>
       <nav>
-        <router-link :to="list.src" v-for="(list,index) in nav" :key="index">{{list.text}}</router-link>
+        <router-link to="/" exact>
+          首页
+        </router-link>
+        <router-link to="/" exact>
+          社区
+        </router-link>
+        <router-link to="/diary" exact>
+          日记
+        </router-link>
+        <router-link to="/publish" exact>
+          发布
+        </router-link>
+        <router-link to="/my">
+          我的
+        </router-link>
       </nav>
     </div>
     <div class="header-right">
@@ -33,28 +47,6 @@ export default {
   data () {
     return {
       login: true,
-      nav: [
-        {
-          text: '首页',
-          src: '/'
-        },
-        {
-          text: '社区',
-          src: '/'
-        },
-        {
-          text: '日记',
-          src: '/diary'
-        },
-        {
-          text: '发布',
-          src: '/publish'
-        },
-        {
-          text: '我的',
-          src: '/my/personal-data'
-        }
-      ]
     }
   }
 }
@@ -81,8 +73,8 @@ export default {
       line-height: 3rem;
       width: 5rem;
       text-align: center;
-      &.router-link-exact-active
-        background: bisque;
+      &.router-link-active
+        background: #fc8d59;
         color: #fff;
   .header-right-btn
     button
@@ -113,7 +105,7 @@ export default {
         font-size: 24px
       span
         position: absolute;
-        background: #fd7031;
+        background: #fc8d59;
         color: #fff;
         width: 1rem;
         height: .8rem;

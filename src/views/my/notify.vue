@@ -7,21 +7,9 @@
         </li>
       </ul>
       <div class="custom-tabs-content">
-        <ul class="custom-tabs-comment" v-if="idx == 0">
-          <li v-for="(list,index) in commentList" :key="index">
-            <div class="comment-header">
-              <img :src="list.portrait" alt="">
-            </div>
-            <div class="comment-text">
-              <h1>{{list.name}}<span>{{list.time}}</span></h1>
-              <p>{{list.text}}</p>
-            </div>
-            <button type="button" class="custom-reply-btn">
-              回复
-            </button>
-          </li>
-        </ul>
-        <ul class="custom-tabs-praise" v-if="idx == 1">
+        <comment-list :commentList="commentList" @click="reply" v-if="idx==0"></comment-list>
+        <comment-list :praiseList="praiseList" v-if="idx==1"></comment-list>
+        <!--<ul class="custom-tabs-praise" v-if="idx == 1">
           <li v-for="(list,index) in praiseList" :key="index">
             <div class="praise-header">
               <img :src="list.portrait" alt="">
@@ -31,13 +19,14 @@
               <p>赞了我的日记</p>
             </div>
           </li>
-        </ul>
+        </ul>-->
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import commentList from '../../components/my/comment-list.vue'
 export default {
   name: 'notify',
   data () {
@@ -74,7 +63,13 @@ export default {
   methods: {
     tabClick (index) {
       this.idx = index
+    },
+    reply () {
+       console.log('reply')
     }
+  },
+  components: {
+    commentList
   }
 }
 </script>
