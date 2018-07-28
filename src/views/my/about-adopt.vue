@@ -43,6 +43,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import editInput from '../../components/my/edit-input.vue'
 export default {
   name: 'about-adopt',
