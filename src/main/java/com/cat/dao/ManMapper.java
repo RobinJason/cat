@@ -1,6 +1,7 @@
 package com.cat.dao;
 
 import com.cat.pojo.Man;
+import org.apache.ibatis.annotations.Param;
 
 public interface ManMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +15,8 @@ public interface ManMapper {
     int updateByPrimaryKeySelective(Man record);
 
     int updateByPrimaryKey(Man record);
+
+    int checkUsername(String username);
+
+    Man selectLogin(@Param("username") String username, @Param("password") String password);
 }
