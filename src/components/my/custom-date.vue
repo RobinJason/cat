@@ -137,6 +137,7 @@
         }
         vm.yIndex = index;
         vm.yearContent.year = vm.yearContent.yearData[index];
+        vm.$emit('timechange',vm.yearContent.year + '' + vm.monthContent.month + '' + vm.dayContent.day);
       },
       monthChange: function (index=0) {
         let vm = this;
@@ -150,6 +151,7 @@
         }
         vm.mIndex = index;
         vm.monthContent.month = vm.monthContent.monthData[index];
+        vm.$emit('timechange',vm.yearContent.year + '' + vm.monthContent.month + '' + vm.dayContent.day);
       },
       dayChange: function (index=0) {
         let vm = this;
