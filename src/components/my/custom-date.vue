@@ -9,7 +9,7 @@
         <transition name="el-zoom-in-top">
           <el-scrollbar class="components-option" v-if="num == 0">
             <ul>
-              <li v-for='(n,index) in yearContent.yearData' :data-value="n" @click="yearChange(index)" :class="{'active': index === yIndex}">
+              <li v-for='(n,index) in yearContent.yearData' :data-value="n" @click="yearChange(index)" :class="{'active': index === yIndex}" :key="index">
                 {{n}}
               </li>
             </ul>
@@ -27,7 +27,7 @@
         <transition name="el-zoom-in-top">
           <el-scrollbar class="components-option" v-if="num == 1">
             <ul>
-              <li v-for='(m,index) in monthContent.monthData' :data-value="m" @click="monthChange(index)" :class="{'active': index === mIndex}">
+              <li v-for='(m,index) in monthContent.monthData' :data-value="m" @click="monthChange(index)" :class="{'active': index === mIndex}" :key="index">
                 {{m}}
               </li>
             </ul>
@@ -45,7 +45,7 @@
         <transition name="el-zoom-in-top">
           <el-scrollbar class="components-option" v-if="num == 2">
             <ul>
-              <li v-for='(d,index) in dayContent.dayData' :data-value="d" @click="dayChange(index)" :class="{'active': index === dIndex}">
+              <li v-for='(d,index) in dayContent.dayData' :data-value="d" @click="dayChange(index)" :class="{'active': index === dIndex}" :key="index">
                 {{d}}
               </li>
             </ul>
@@ -69,6 +69,7 @@
 </template>
 
 <script>
+/* eslint-disable */
   export default {
     props: ['nowdata','mindata','maxdata'],
     data: function () {

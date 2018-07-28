@@ -56,7 +56,7 @@ export default {
     },
     getChosenLocation (val) { // 选中后得到的数组值
       console.log(val)
-      this.$store.commit('changeCity',val) // 触发vuex，citySelect.js中的mutation方法
+      this.$store.commit('changeCity', val) // 触发vuex，citySelect.js中的mutation方法
     }
   },
   created () {

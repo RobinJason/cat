@@ -26,6 +26,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import commentList from '../../components/my/comment-list.vue'
 export default {
   name: 'notify',

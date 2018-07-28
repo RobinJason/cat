@@ -6,6 +6,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import catList from '../../components/my/cat-list.vue'
 export default {
   name: 'collection',
