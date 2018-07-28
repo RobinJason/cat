@@ -1,11 +1,14 @@
 <template>
   <div class="find-master">
+    <!--头像-->
     <div class="user-photo">
       <img src="" alt="">
     </div>
+    <!--文本框-->
     <div class="text">
       <textarea name="" id=""></textarea>
     </div>
+    <!--上传图片-->
     <div class="upload-wrap">
       <el-upload
         class="upload-demo"
@@ -22,8 +25,13 @@
         <img :src="uploadPic" alt="">
       </div>
     </div>
+    <!--城市选择器-->
     <div class="city-select-wrap">
       <city-select :order="order"></city-select> <!-- *传递数据到citySelect组件-->
+    </div>
+    <!--发布按钮-->
+    <div class="pub-btn">
+      <button type="primary" @click="handlePub">发布</button>
     </div>
   </div>
 </template>
@@ -68,6 +76,9 @@ export default {
     },
     handleSuccess (response, file, fileList) {
       this.fileList = fileList
+    },
+    handlePub () {
+
     }
   },
   components: {
