@@ -3,6 +3,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import publish from '@/components/publish/publish'
 import diary from '@/components/diary/diary'
+import slogan from '@/components/slogan/slogan'
+import forget from '@/components/slogan/forget.vue'
+import register from '@/components/slogan/register.vue'
+import login from '@/components/slogan/login.vue'
 
 Vue.use(Router)
 
@@ -45,6 +49,26 @@ const routes = [
         ]
       }
     ]
+  },
+  {
+    path: '/slogan',
+    name: 'slogan',
+    component: slogan
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: login
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: register
+  },
+  {
+    path: '/forget',
+    name: 'forget',
+    component: forget
   }
 ]
 
