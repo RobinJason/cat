@@ -27,11 +27,13 @@
     </div>
     <!--城市选择器-->
     <div class="city-select-wrap">
-      <city-select :order="order"></city-select> <!-- *传递数据到citySelect组件-->
+      <city-select :citySelectData="citySelectData"></city-select> <!-- *传递数据到citySelect组件-->
     </div>
     <!--发布按钮-->
     <div class="pub-btn">
-      <button type="primary" @click="handlePub">发布</button>
+      <el-button
+        @click="handlePub"
+        :loading="pubBtnState.isLoading">发布</el-button>
     </div>
   </div>
 </template>
@@ -52,7 +54,14 @@ export default {
           url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
         }
       ],
-      order: 2 // *级联选择器需要的级数，根据需要来进行修改，可供选择的范围有1，2，3
+      citySelectData: { // *父组件调用时，传入级联选择器的参数
+        order: 2, // *级联选择器需要的级数，根据需要来进行修改，可供选择的范围有1，2，3
+        phStr: '所在位置', // *级联选择器的placeholder内容，不需要时设置为空字符串
+        className: 'publish-city-select' // *级联选择器的class，两种样式，pub-city-select、index-city-select、community-city-select
+      },
+      pubBtnState: {
+        isLoading: false
+      }
     }
   },
   computed: {
@@ -162,4 +171,15 @@ export default {
         img
           height 100%
           width 100%
+    .city-select-wrap
+      margin-top 30px
+    .pub-btn
+      margin-top 100px
+      text-align center
+      button
+        background #fc8d59
+        border-style none
+        color #ffffff
+        font-size 26px
+        width 500px
 </style>

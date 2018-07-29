@@ -1,9 +1,9 @@
 <template>
-  <div class="city-select">
+  <div class="city-select" :class="citySelectData.className">
     <el-cascader
       :options="options"
       change-on-select
-      placeholder="所在位置"
+      :placeholder="citySelectData.phStr"
       size="medium"
       @change="getChosenLocation"
     ></el-cascader>
@@ -12,7 +12,7 @@
 <script>
 import axios from 'axios'
 export default {
-  props: ['order'],
+  props: ['citySelectData'],
   data () {
     return {
       options: [],
@@ -29,7 +29,7 @@ export default {
       })
     },
     convertJsonKey (arr) { // 转换Json的key为需要的key值
-      let option = this.recursionReplace(arr, this.order)
+      let option = this.recursionReplace(arr, this.citySelectData.order)
       return option
     },
     recursionReplace (arr, order, num = 1) { // 递归替换key函数
@@ -64,6 +64,27 @@ export default {
   }
 }
 </script>
-<style scoped>
-
+<style lang="stylus" rel="stylesheet/stylus">
+  body
+    background #f6f6f6
+  .publish-city-select // 发布的级联选择器样式
+    input.el-input__inner
+      background transparent url("pub-pos.png") no-repeat 8px center
+      border-color #cccccc
+      height: 50px;
+      line-height: 50px;
+      padding-left: 42px;
+      width 500px
+    span.el-input__suffix
+      display none
+    span.el-cascader__label
+      line-height: 50px;
+      padding: 0 25px 0 42px!important;
+  .index-city-select,.community-city-select
+    input.el-input__inner
+      background transparent
+      border-color #91bfdb
+      width 150px
+    span.el-input__suffix
+      display none
 </style>
