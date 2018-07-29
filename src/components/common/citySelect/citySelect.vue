@@ -16,7 +16,7 @@ export default {
   data () {
     return {
       options: [],
-      mapJson: '../static/json/map.json'
+      mapJson: '../../static/json/map.json'
     }
   },
   methods: {

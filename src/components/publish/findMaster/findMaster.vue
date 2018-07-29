@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import citySelect from '../../common/citySelect' // *调用城市select组件
+import citySelect from '../../common/citySelect/citySelect' // *调用城市select组件
 import { mapState } from 'vuex' // *引入vuex的state
 export default {
   data () {
