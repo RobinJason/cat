@@ -10,7 +10,7 @@
 <script>
 import catStory from './catStory/catStory'
 import findMaster from './findMaster/findMaster'
-import catTab from '../common/catTab'
+import catTab from '../common/catTab/catTab'
 import { mapState } from 'vuex'
 export default {
   data () {
@@ -34,6 +34,7 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="stylus" rel="stylesheet/stylus">
+  body
+    background #f6f6f6
 </style>

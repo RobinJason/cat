@@ -16,7 +16,7 @@ export default {
   data () {
     return {
       options: [],
-      mapJson: '../static/json/map.json'
+      mapJson: '../../static/json/map.json'
     }
   },
   methods: {
@@ -65,8 +65,6 @@ export default {
 }
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
-  body
-    background #f6f6f6
   .publish-city-select // 发布的级联选择器样式
     input.el-input__inner
       background transparent url("pub-pos.png") no-repeat 8px center
