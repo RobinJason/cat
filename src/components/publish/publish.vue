@@ -34,6 +34,7 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="stylus" rel="stylesheet/stylus">
+  body
+    background #f6f6f6
 </style>
