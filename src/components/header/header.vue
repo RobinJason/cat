@@ -24,8 +24,12 @@
     </div>
     <div class="header-right">
       <div class="header-right-btn" v-if="!login">
-        <button type="button">登录</button>
-        <button type="button">注册</button>
+        <router-link to="/login">
+          <button type="button">登录</button>
+        </router-link>
+        <router-link to="/register">
+          <button type="button">注册</button>
+        </router-link>
       </div>
       <div class="header-right-info" v-if="login">
         <div class="portrait">
@@ -46,7 +50,7 @@
 export default {
   data () {
     return {
-      login: true
+      login: false
     }
   }
 }
@@ -78,8 +82,8 @@ export default {
         color: #fff;
   .header-right-btn
     button
-      border: 1px solid bisque;
-      background: bisque;
+      border: 1px solid #fc8d59;
+      background: #fc8d59;
       color: #fff;
       padding: 2px 8px;
       border-radius: 6px;
