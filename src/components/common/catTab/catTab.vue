@@ -2,8 +2,10 @@
   <div class="cat-tab-btn">
     <ul>
       <li v-for="(tab,index) in tabs" :key="index">
-        <span :class="['tab-item', { 'active-tab' : currentTab === tab.name}]" @click=" valuesClass(tab.name) ">{{tab.text}}</span>
-        <i class="tab-trans"></i>
+        <router-link :to="tab.src">
+          <span class="tab-item">{{tab.text}}</span>
+          <i class="tab-trans"></i>
+        </router-link>
       </li>
     </ul>
   </div>
@@ -16,16 +18,13 @@ export default {
     return {
       currentTab: 'find-master',
       tabs: [
-        { name: 'find-master', text: '为喵星人寻找主人' },
-        { name: 'cat-story', text: '我和喵星人的故事' }
+        { name: 'find-master', text: '为喵星人寻找主人', src: '/diary' },
+        { name: 'cat-story', text: '我和喵星人的故事', src: '/publish' }
       ]
     }
   },
   methods: {
-    valuesClass (val) {
-      this.currentTab = val
-      this.$store.commit('changeItem', val)
-    }
+
   }
 }
 </script>
@@ -38,18 +37,20 @@ export default {
       font-size 0
       li
         display inline-block
-        padding 40px 0 50px
         text-align center
         position relative
         width 50%
+        a
+          display block
+          padding 40px 0 50px
+          &.router-link-exact-active
+            font-weight 600
+            .tab-trans
+              display block
         span.tab-item
           color #666
           cursor pointer
           font-size 24px
-          &.active-tab
-            font-weight 600
-            ~ i.tab-trans
-              display block
         i.tab-trans
           display none
           position absolute
