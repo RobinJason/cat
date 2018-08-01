@@ -2,7 +2,9 @@
   <div class="cat-tab-btn">
     <ul>
       <li v-for="(tab,index) in tabs" :key="index">
-        <span :class="['tab-item', { 'active-tab' : currentTab === tab.name}]" @click=" valuesClass(tab.name) ">{{tab.text}}</span>
+        <router-link
+          :to="linkUrl(tab.name)"
+          class="tab-item">{{tab.text}}</router-link>
         <i class="tab-trans"></i>
       </li>
     </ul>
@@ -12,19 +14,19 @@
 <script>
 // import { mapState } from 'vuex'
 export default {
+  props: ['linkName'],
   data () {
     return {
-      currentTab: 'find-master',
+      currentTab: 'findMaster',
       tabs: [
-        { name: 'find-master', text: '为喵星人寻找主人' },
-        { name: 'cat-story', text: '我和喵星人的故事' }
+        { name: 'findMaster', text: '为喵星人寻找主人' },
+        { name: 'catStory', text: '我和喵星人的故事' }
       ]
     }
   },
   methods: {
-    valuesClass (val) {
-      this.currentTab = val
-      this.$store.commit('changeItem', val)
+    linkUrl (str) {
+      return '/' + this.linkName + '/' + str
     }
   }
 }
@@ -42,11 +44,11 @@ export default {
         text-align center
         position relative
         width 50%
-        span.tab-item
+        a.tab-item
           color #666
           cursor pointer
           font-size 24px
-          &.active-tab
+          &.router-link-active
             font-weight 600
             ~ i.tab-trans
               display block
