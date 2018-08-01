@@ -40,7 +40,6 @@ export default {
       font-size 0
       li
         display inline-block
-        padding 40px 0 50px
         text-align center
         position relative
         width 50%
