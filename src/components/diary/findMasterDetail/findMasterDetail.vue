@@ -7,7 +7,7 @@
     <div class="detail-content">
       {{item.content}}
     </div>
-    <photo-slide></photo-slide>
+    <photo-slide :pic-arr="item.photo"></photo-slide>
     <div class="func-btn-wrap">
       <button type="button" v-if="item.isAdopted">查看喵星人的主人</button>
       <button type="button" v-else @click="changeMessageState">申请当它的主人</button>

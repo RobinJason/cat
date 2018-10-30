@@ -41,7 +41,7 @@ export default {
     }
   },
   methods: {
-    formatDate(date = new Date()) { // TODO 日期格式化
+    formatDate (date = new Date()) { // TODO 日期格式化
       let str = ''
       return str
     },
@@ -55,7 +55,7 @@ export default {
         content: this.newReply,
         date: this.formatDate()
       }
-      if(this.newReply){
+      if (this.newReply) {
         this.replyList.push(item)
       }
     }

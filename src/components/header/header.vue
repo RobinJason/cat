@@ -11,10 +11,10 @@
         <router-link to="/" exact>
           社区
         </router-link>
-        <router-link to="/diary" exact>
+        <router-link to="/diary">
           日记
         </router-link>
-        <router-link to="/publish" exact>
+        <router-link to="/publish">
           发布
         </router-link>
         <router-link to="/my">
